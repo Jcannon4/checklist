@@ -10,28 +10,13 @@
 import Todos from './components/Todos';
 import Header from './components/layout/Header';
 import AddTask from './components/AddTask';
+import axios from 'axios';
 export default {
   name: 'App',
   components: { Todos, Header, AddTask },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: 'TODO ONE',
-          completed: false,
-        },
-        {
-          id: 2,
-          title: 'TODO TWO',
-          completed: true,
-        },
-        {
-          id: 3,
-          title: 'TOdo Three',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
   },
   methods: {
@@ -41,6 +26,12 @@ export default {
     addTask(newTask) {
       this.todos = [...this.todos, newTask];
     },
+  },
+  created() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos?_limit=1')
+      .then((res) => (this.todos = res.data))
+      .catch((err) => console.log(err));
   },
 };
 </script>

@@ -24,7 +24,7 @@ export default {
     addTask(e) {
       e.preventDefault();
       const newTask = {
-        id: Math.random(),
+        //id: Math.random(),
         title: this.title,
         completed: false,
       };
