@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <Todos v-bind:todos="todos" />
+    <Header></Header>
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
 import Todos from './components/Todos';
+import Header from './components/layout/Header';
 export default {
   name: 'App',
-  components: { Todos },
+  components: { Todos, Header },
   data() {
     return {
       todos: [
@@ -22,8 +24,18 @@ export default {
           title: 'TODO TWO',
           completed: true,
         },
+        {
+          id: 3,
+          title: 'TOdo Three',
+          completed: false,
+        },
       ],
     };
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todos = this.todos.filter((todo) => todo.id != id);
+    },
   },
 };
 </script>
