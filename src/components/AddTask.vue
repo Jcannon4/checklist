@@ -1,7 +1,12 @@
 <template>
   <div>
-    <form>
-      <input type="text" name="title" placeholder="Add a Task" />
+    <form @submit="addTask">
+      <input
+        type="text"
+        v-model="title"
+        name="title"
+        placeholder="Add a Task"
+      />
       <input type="submit" value="Submit" class="btn" />
     </form>
   </div>
@@ -10,6 +15,18 @@
 <script>
 export default {
   name: 'AddTask',
+  data() {
+    return {
+      title: '',
+    };
+  },
+  methods: {
+    addTask() {
+      const newTask = {
+        id: 0,
+      };
+    },
+  },
 };
 </script>
 
