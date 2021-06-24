@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header></Header>
-    <AddTask />
+    <AddTask v-on:add-task="addTask" />
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 import Todos from './components/Todos';
 import Header from './components/layout/Header';
-import AddTask from './components/AddTask.vue';
+import AddTask from './components/AddTask';
 export default {
   name: 'App',
   components: { Todos, Header, AddTask },
@@ -37,6 +37,9 @@ export default {
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter((todo) => todo.id != id);
+    },
+    addTask(newTask) {
+      this.todos = [...this.todos, newTask];
     },
   },
 };

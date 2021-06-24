@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit="addTask">
+    <form @submit.prevent="addTask">
       <input
         type="text"
         v-model="title"
@@ -21,10 +21,15 @@ export default {
     };
   },
   methods: {
-    addTask() {
+    addTask(e) {
+      e.preventDefault();
       const newTask = {
-        id: 0,
+        id: Math.random(),
+        title: this.title,
+        completed: false,
       };
+      this.$emit('add-task', newTask);
+      this.title = '';
     },
   },
 };
